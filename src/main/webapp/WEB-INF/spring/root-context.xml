@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 오라클 연결 정보 -->
+	<!-- 라이브러리가 안먹혔을때는 직접 넣어야한다.
+		 WEB-INF에 lib 폴더 만들어서
+		 DB lib 인 ojdbc8.jar를 넣어준다
+	  -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="c##ictedu" />
+		<property name="password" value="1111" />
+	</bean>
+
+	<!-- mybatis : config (config의 역할 : 오라클연결 정보, mapper 위치를 알려준다.)  -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath*:com/ict/guestbook/model/dao/mapper.xml" />
+	</bean>
+	
+	<!-- SqlSessionTemplate -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- DAO  --><!-- 이름과 참조는 같이 하는게 좋다 autowired를 쓰기위해서  -->
+	<bean id="dao" class="com.ict.guestbook.model.dao.GuestbookDAO">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>	
+</beans>
