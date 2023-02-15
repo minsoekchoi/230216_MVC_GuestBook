@@ -30,7 +30,7 @@ div {
 <script type="text/javascript">
 	function delete_ok(f) {
 		// 비밀번호 
-		var k = "${guestbookvo.pwd}";
+		var k = "${guestbookVO.pwd}";
 		if (f.pwd.value == k) {
 			var chk = confirm("정말 삭제할까요?");
 			if (chk) {
@@ -65,9 +65,10 @@ div {
 				</tbody>
 				<tfoot>
 					<tr>
-						<td colspan="2"><input type="button" value="삭제"
-							onclick="delete_ok(this.form)"> <input type="hidden"
-							name="idx" value="${guestbookvo.idx}"></td>
+						<td colspan="2">
+							<input type="button" value="삭제" onclick="delete_ok(this.form)"> 
+							<input type="hidden" name="idx" value="${guestbookVO.idx}">
+						</td>
 					</tr>
 				</tfoot>
 			</table>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- 오라클 연결 정보 -->
@@ -17,9 +19,10 @@
 	</bean>
 
 	<!-- mybatis : config (config의 역할 : 오라클연결 정보, mapper 위치를 알려준다.)  -->
+	<!-- config를 이용해 맵퍼 위치를 설정해준다. -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath*:com/ict/guestbook/model/dao/mapper.xml" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
 	</bean>
 	
 	<!-- SqlSessionTemplate -->
@@ -27,8 +30,18 @@
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
 	
-	<!-- DAO  --><!-- 이름과 참조는 같이 하는게 좋다 autowired를 쓰기위해서  -->
-	<bean id="dao" class="com.ict.guestbook.model.dao.GuestbookDAO">
+	<!-- DAO  -->
+	<!-- 이름과 참조는 같이 하는게 좋다 autowired를 쓰기위해서  -->
+	<!-- 허허 안해놓고 잘 적어놨네 정신차려 최민석  -->
+	<!-- <bean id="guestbookDAO" class="com.ict.guestbook.model.dao.GuestbookDAO">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
-	</bean>	
+	</bean> -->
+	
+	
+	<!-- annotation 을 위한  -->
+	<!-- namespaces 가서 context 체크 -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.ict.*" />
+
+	
 </beans>

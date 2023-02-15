@@ -3,11 +3,11 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="guestbook">
-	<select id="list" resultType="com.ict.guestbook.model.vo.GuestbookVO">
+	<select id="list" resultType="gvo">
 		select * from guestbook order by idx
 	</select>
 	
-	<select id="onelist" parameterType="String" resultType="com.ict.guestbook.model.vo.GuestbookVO">
+	<select id="onelist" parameterType="String" resultType="gvo">
 		select * from guestbook where idx = #{idx}
 	</select>
 
@@ -15,14 +15,14 @@
 		delete from guestbook where idx = #{idx}
 	</delete>
 
-	<update id="update" parameterType="com.ict.guestbook.model.vo.GuestbookVO">
-		update 	guestbook 
+	<update id="update" parameterType="gvo">
+		update guestbook 
 		set name=#{name}, subject=#{subject}, 
 		email=#{email}, content=#{content} 
 		where idx = #{idx}
 	</update>
 
-	<insert id="insert" parameterType="com.ict.guestbook.model.vo.GuestbookVO">
+	<insert id="insert" parameterType="gvo">
 		insert into guestbook(idx, name, subject, content, email, pwd, regdate) 
 		values(guestbook_seq.nextval,#{name},#{subject}, #{content},#{email},#{pwd} ,sysdate)  
 	</insert>

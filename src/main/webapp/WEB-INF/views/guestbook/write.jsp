@@ -32,6 +32,11 @@ div {
 		f.action = "write_ok.do";
 		f.submit();
 	}
+	
+	function cancle_go(f) {
+		f.action = "list.do";
+		f.submit();
+	}
 </script>
 </head>
 <body>
@@ -65,10 +70,12 @@ div {
 				</tr>
 				<tfoot>
 					<tr align="center">
-						<td colspan="2"><input type="hidden" value="write_ok"
-							name="cmd"> <input type="button" value="저장"
-							onclick="save_go(this.form)" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-							type="reset" value="취소" onclick="save_go(this.form)" /></td>
+						<td colspan="2">
+							<input type="hidden" value="write_ok" name="cmd"> 
+							<input type="button" value="저장" onclick="save_go(this.form)" />
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							<input type="reset" value="취소" onclick="cancle_go(this.form)" />
+						</td>
 					</tr>
 				</tfoot>
 			</table>

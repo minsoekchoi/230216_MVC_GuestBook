@@ -19,4 +19,6 @@ public interface GuestbookService {
 	
 	// 삽입
 	int guestbookInsert(GuestbookVO vo);
+	
+	// 페이지 보내기??
 }
