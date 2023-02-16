@@ -47,9 +47,8 @@
 					<c:choose>
 						<c:when test="${! empty guestBook2VO.f_name}">
 							<td>
-							<!-- 여기 이해 못함  -->
 							<img src="<c:url value='/resources/upload/${guestBook2VO.f_name}'/>" width="200px"><br>
-							<a href="down.do?file_name=${guestBook2VO.f_name}">${guestBook2VO.f_name}</a>
+							<a href="gb2_down.do?f_name=${guestBook2VO.f_name}">${guestBook2VO.f_name}</a>
 							</td>
 						</c:when>
 						<c:otherwise>
@@ -64,6 +63,12 @@
 					<tr align="center">
 						<td colspan="2">
 							<input type="hidden" name="idx" value="${guestBook2VO.idx}">
+							<%-- <input type="hidden" name="pwd" value="${guestBook2VO.pwd}"> --%>
+							<!-- <input type="hidden" name="cmd" value="1"> -->
+							<!-- cmd 를 활용할 경우에는 cmd도 부여하여 가져가 주여야 한다. -->
+							<!-- ?? cmd 가 1이 아닌 경우가 있나?? -->
+							<!-- 삭제를 위한 1이구만  -->
+							<!-- 수정은 2가되겠군 -->
 							<input type="button" value="수정" onclick="update_go(this.form)">
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;								   
 							<input type="button" value="삭제" onclick="delete_go(this.form)">

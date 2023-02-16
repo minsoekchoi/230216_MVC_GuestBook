@@ -50,7 +50,8 @@
 						<td colspan="2">
 							<input type="button" value="삭제" onclick="delete_ok(this.form)">
 							<input type="hidden" name="idx" value="${guestBook2VO.idx}">
-							<input type="hidden" name="cmd" value="delete_ok">
+							<!-- <input type="hidden" name="cmd" value="2"> -->
+							<!-- cmd 를 파라미터로 받는다면 else를 주어도 null값은 안되는군 -->
 						</td>
 					</tr>
 				</tfoot>

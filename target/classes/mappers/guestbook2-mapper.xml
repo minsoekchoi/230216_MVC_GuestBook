@@ -22,9 +22,7 @@
 	
 	<update id="update" parameterType="g2vo">
 		update guestbook2 
-		set name=#{name}, subject=#{subject}, 
-		email=#{email}, content=#{content} 
-		where idx = #{idx}
+		set name=#{name}, subject=#{subject}, email=#{email}, content=#{content}, f_name=#{f_name} where idx = #{idx}
 	</update>
 </mapper>
 

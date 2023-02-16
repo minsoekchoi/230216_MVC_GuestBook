@@ -55,6 +55,12 @@ div {
 			return;
 		}
 	}
+	
+	function cancle_go(f) {
+		f.action = "gb2_list.do";
+		f.submit();
+	}
+	
 </script>
 </head>
 <body>
@@ -111,10 +117,12 @@ div {
 				</tr>
 				<tfoot>
 					<tr align="center">
-						<td colspan="2"><input type="button" value="수정"
-							onclick="save_go(this.form)" /> <input type="hidden" name="idx"
-							value="${guestBook2VO.idx}">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="reset" value="취소" />
+						<td colspan="2">
+						<input type="button" value="수정" onclick="save_go(this.form)" />
+						<input type="hidden" name="idx"	value="${guestBook2VO.idx}">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="reset" value="취소" onclick="cancle_go(this.form)" />
+						<!-- <input type=“reset”>는 모든 폼(form) 요소의 값을 초깃값으로 되돌리는 리셋 버튼(reset button)을 정의합니다. -->
 						</td>
 					</tr>
 				</tfoot>
@@ -144,7 +152,6 @@ div {
 		function sendImage(file, editor) {
 			var frm = new FormData();
 			frm.append("upload", file);
-
 			// 비동기 통신
 			$.ajax({
 				url : "${pageContext.request.contextPath}/view/saveImage.jsp",
